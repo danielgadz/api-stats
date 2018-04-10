@@ -1,5 +1,7 @@
 package com.bap.stats.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,18 +12,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "equipos")
 @SequenceGenerator(name = "generator_equipo", sequenceName = "seq_equipo", initialValue = 1, allocationSize = 1)
-public class Equipo {
+public class Equipo implements Serializable {
 
-	@Id	
+	private static final long serialVersionUID = 7312208578639034663L;
+
+	@Id
 	@Column(name = "id_equipo")
-	@GeneratedValue(generator = "generator_equipo")	
+	@GeneratedValue(generator = "generator_equipo")
 	private Long id;
-		
+
+	@Column(nullable = false)
 	private String nombre;
+
 	private String capitan;
 	private String logo;
-	
-	
 
 	public Equipo(String nombre, String capitan, String logo) {
 		super();
@@ -32,7 +36,6 @@ public class Equipo {
 
 	public Equipo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {

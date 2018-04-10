@@ -1,6 +1,7 @@
 package com.bap.stats.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,31 +14,31 @@ public class EquipoServiceImpl implements EquipoService {
 
 	@Autowired
 	private EquipoRepository repoEquipo;
-	
+
 	@Override
 	public void guardarEquipo(Equipo equipo) {
-		// TODO Auto-generated method stub
-		
-		repoEquipo.save(equipo);	
-
+		repoEquipo.save(equipo);
 	}
 
 	@Override
 	public List<Equipo> listarEquipos() {
-		// TODO Auto-generated method stub
-		return repoEquipo.findAll();
+		return (List<Equipo>) repoEquipo.findAll();
 	}
 
 	@Override
-	public Equipo buscarEquipo(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Equipo> buscarEquipo(Long id) {
+		return repoEquipo.findById(id);
 	}
 
 	@Override
 	public void eliminarEquipo(Long id) {
-		// TODO Auto-generated method stub
-		
+		repoEquipo.deleteById(id);
+
+	}
+
+	@Override
+	public Boolean existeEquipo(Long id) {
+		return repoEquipo.existsById(id);
 	}
 
 }
