@@ -1,13 +1,17 @@
 package com.bap.stats.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "equipos")
@@ -24,13 +28,15 @@ public class Equipo implements Serializable {
 	@Column(nullable = false)
 	private String nombre;
 
-	private String capitan;
 	private String logo;
 
-	public Equipo(String nombre, String capitan, String logo) {
+	@OneToMany(mappedBy = "equipo")
+	@JsonIgnore
+	private List<Jugador> jugadores;
+
+	public Equipo(String nombre, String logo) {
 		super();
 		this.nombre = nombre;
-		this.capitan = capitan;
 		this.logo = logo;
 	}
 
@@ -54,20 +60,20 @@ public class Equipo implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getCapitan() {
-		return capitan;
-	}
-
-	public void setCapitan(String capitan) {
-		this.capitan = capitan;
-	}
-
 	public String getLogo() {
 		return logo;
 	}
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
 	}
 
 }
