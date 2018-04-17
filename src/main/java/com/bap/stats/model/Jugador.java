@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "jugadores")
 @SequenceGenerator(name = "generator_jugador", sequenceName = "seq_jugador", initialValue = 1, allocationSize = 1)
@@ -24,28 +22,28 @@ public class Jugador implements Serializable {
 	@Column(name = "id_jugador")
 	@GeneratedValue(generator = "generator_jugador")
 	private Long id;
+	
+	@Column(nullable=false)
 	private String nombre;
-	private Integer edad;
-	private Double peso;
+	
+	@Column(nullable=false)
+	private String correo;
+	
 	private Integer numero;
-	private Double estatura;
 	private Boolean esCapitan;
 	
 	@ManyToOne
 	@JoinColumn(name="id_equipo")
-	@JsonIgnore
 	private Equipo equipo;
 
-	public Jugador(String nombre, Integer edad, Double peso, Integer numero, Double estatura, Boolean esCapitan,
+	public Jugador(String nombre,String correo, Integer numero, Boolean esCapitan,
 			Equipo equipo) {
 		super();
 		this.nombre = nombre;
-		this.edad = edad;
-		this.peso = peso;
 		this.numero = numero;
-		this.estatura = estatura;
 		this.esCapitan = esCapitan;
 		this.equipo = equipo;
+		this.correo = correo;
 	}
 
 	public Jugador() {
@@ -68,36 +66,12 @@ public class Jugador implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Integer getEdad() {
-		return edad;
-	}
-
-	public void setEdad(Integer edad) {
-		this.edad = edad;
-	}
-
-	public Double getPeso() {
-		return peso;
-	}
-
-	public void setPeso(Double peso) {
-		this.peso = peso;
-	}
-
 	public Integer getNumero() {
 		return numero;
 	}
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
-	}
-
-	public Double getEstatura() {
-		return estatura;
-	}
-
-	public void setEstatura(Double estatura) {
-		this.estatura = estatura;
 	}
 
 	public Boolean getEsCapitan() {
@@ -114,6 +88,14 @@ public class Jugador implements Serializable {
 
 	public void setEquipo(Equipo equipo) {
 		this.equipo = equipo;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 }
