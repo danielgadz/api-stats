@@ -5,3 +5,7 @@ insert into jugadores (id_jugador,nombre, correo, numero,  es_capitan,id_equipo)
 insert into jugadores (id_jugador,nombre, correo, numero,  es_capitan,id_equipo) values (nextval('seq_jugador'), 'Jose Mendez','juan.perez@banorte.com',10,true, 2)
 insert into jugadores (id_jugador,nombre, correo, numero,  es_capitan,id_equipo) values (nextval('seq_jugador'), 'Luis Garcia','juan.perez@banorte.com',9,false, 1)
 insert into jugadores (id_jugador,nombre, correo, numero,  es_capitan,id_equipo) values (nextval('seq_jugador'), 'Anselmo Martinez','juan.perez@banorte.com',7,false, 2)
+
+insert into usuarios(id_usuario, correo, clave) values (nextval('seq_usuario'), 'roger.davila.reyna@banorte.com', '1232341234')
+insert into roles(id_rol, descripcion) values (nextval('seq_rol'), 'Administrador')
+insert into usuarios_roles (id_usuario, id_rol) values (1,1)
