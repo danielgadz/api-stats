@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,4 +61,14 @@ public class ResultadoController {
 		return new ResponseEntity<String>("Ocurrio un error al guardar equipo", HttpStatus.BAD_REQUEST);
 	}
 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> eliminarResultado(@PathVariable("id") Long id) {
+		if (resultadoService.existeResultado(id)) {
+			resultadoService.eliminarResultado(id);
+			return new ResponseEntity<String>("Resultado #" + id + " eliminado correctamente", HttpStatus.OK);
+		}
+
+		return new ResponseEntity<String>("No es posible eliminar el equipo: el identificador no existe",
+				HttpStatus.BAD_REQUEST);
+	}
 }

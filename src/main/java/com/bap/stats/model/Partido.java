@@ -12,7 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "partidos")
@@ -28,12 +30,12 @@ public class Partido implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_equipo_local")
-	@JsonIgnore
+	@JsonIgnoreProperties({"logo" })
 	private Equipo equipo_local;
 
 	@ManyToOne
 	@JoinColumn(name = "id_equipo_visita")
-	@JsonIgnore
+	@JsonIgnoreProperties({ "logo" })
 	private Equipo equipo_visita;
 
 	/*
@@ -41,10 +43,19 @@ public class Partido implements Serializable {
 	 * 
 	 * @JoinColumn(name = "id_jornada")
 	 * 
-	 * @JsonIgnore private Jornada jornada;
+	 * private Jornada jornada;
+	 */
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "id_estatus")
+	 * 
+	 * private Estatus estatus;
 	 */
 
 	@Column(nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date fecha;
 
 	@Column(nullable = false)
@@ -114,5 +125,4 @@ public class Partido implements Serializable {
 		this.lugar = lugar;
 	}
 
-	
 }
