@@ -13,4 +13,7 @@ insert into roles(id_rol, descripcion) values (nextval('seq_rol'), 'Administrado
 insert into usuarios_roles (id_usuario, id_rol) values (1,1)
 
 insert into partidos (id_partido, fecha, hora, lugar, id_equipo_local, id_equipo_visita) values (nextval('seq_partido'),'2012-09-17','19:00','Cancha 1', 1,2)
-insert into resultados (id_resultado, marcador, set, triunfo, id_equipo, id_partido) values (nextval('seq_resultado'),25, 1, true, 1, 1)
+insert into resultados (id_resultado, marcador, set, triunfo, id_equipo, id_partido) values (nextval('seq_resultado'),25, 1, false, 1, 1)
+insert into resultados (id_resultado, marcador, set, triunfo, id_equipo, id_partido) values (nextval('seq_resultado'),20, 1, false, 2, 1)
+insert into resultados (id_resultado, marcador, set, triunfo, id_equipo, id_partido) values (nextval('seq_resultado'),25, 2, true, 1, 1)
+insert into resultados (id_resultado, marcador, set, triunfo, id_equipo, id_partido) values (nextval('seq_resultado'),19, 2, false, 2, 1)
